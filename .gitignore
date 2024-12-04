@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / compiled Python files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# pytest cache
+.pytest_cache/
+
+# NLTK data (if you're downloading locally in the project folder)
+nltk_data/
+
+
