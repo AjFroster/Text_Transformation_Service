@@ -1,11 +1,10 @@
 import nltk
 from nltk.tokenize import sent_tokenize
 
-# nltk.download("punkt_tab")
+nltk.download("punkt_tab")
 # nltk.data.path.append(r"../libraries/nltk_data/tokenizers")
 
-nltk.data.path.append(r'C:/Users/ajfos/AppData/Roaming/nltk_data')
-
+# nltk.data.path.append(r'C:/Users/ajfos/AppData/Roaming/nltk_data')
 # print("NLTK Data Paths: ", nltk.data.path)
 # nltk.data.find('tokenizers/punkt')
 def chunk_text(text: str, chunk_size: int)->list:
