@@ -71,6 +71,12 @@ I have created a test suite to cover various scenarios, including:
 7. Text value is empty
 8. Large input Text
 
+To run the pytest suite use the command:
+
+```bash
+docker run ajfroster/text_transformation_service:latest pytest -v
+```
+
 # Endpoints
 
 /chunk (POST)
