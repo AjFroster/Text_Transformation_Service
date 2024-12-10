@@ -10,11 +10,15 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# Run the setup script for NLTK
+RUN python setup_nltk.py
 
 # Define environment variable
 ENV NAME World
 
+# DOCKER RUN
+
 # Run app.py when the container launches
-CMD ["python", "app.py"]
+# CMD ["python", "app.py"]
+# Use to remove Flask dev warning on run
+CMD ["gunicorn","app:app"]

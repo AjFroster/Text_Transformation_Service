@@ -11,6 +11,7 @@ This is a Python-based REST API that accepts natural language input and performs
 # Prerequisites
 
 1. Docker installed on your machine
+2. An amd64 architecture is required to runt he Docker image.
 
 # How to Run
 
@@ -20,7 +21,7 @@ This section covers the steps required to get the application up and running usi
 
 #### 1. Pull the Docker Image
 
-First, ensure Docker is installed on your machine. If it is not installed, download and install Docker from [Docker's official website](https://www.docker.com/products/docker-desktop). After installation, pull the Docker image from Docker Hub:
+First, install Docker if you haven't. [Docker's official website](https://www.docker.com/products/docker-desktop). After installation, pull the Docker image from Docker Hub:
 
 ```bash
 docker pull ajfroster/text_transformation_service:latest
@@ -40,7 +41,7 @@ This starts the container and maps port 80 of the container to port 4000 on your
 
 ###### A. Manual Testing
 
-I like postman, if you are unfamiliar download postman here: https://www.postman.com/downloads/⁠
+Here's how [Postman](https://www.postman.com/) can be used to interact with the API:
 
 1. Create a POST request pointed to http://127.0.0.1:4000/chunk
 2. In the Header Tab: Key=Content-Type, Value=application/json
@@ -53,9 +54,7 @@ I like postman, if you are unfamiliar download postman here: https://www.postman
 If you don't like postman, here is a sample curl command:
 
 ```bash
-curl -X POST http://localhost:4000/chunk⁠
--H "Content-Type: application/json"
--d '{"text": "Natural language processing is a fascinating field. It involves the interaction between computers and human language.", "chunk_size": 50}'
+curl -X POST http://localhost:4000/chunk -H "Content-Type: application/json" -d "{\"text\": \"Natural language processing is a fascinating field. It involves the interaction between computers and human language.\", \"chunk_size\": 50}"
 ```
 
 ###### B. Test Suite Testing
@@ -65,47 +64,16 @@ I have created a test suite to cover various scenarios, including:
 1. Basic proper input
 2. Short text input
 3. Large chunk_size (500 characters)
-4. Missing field (json input does not include "text" field)
-5. Invalid chunk_size (<= 0)
-6. Test Invalid input (not JSON)
-7. Text value is empty
-8. Large input Text
+4. Sentence prioritizing for chunk size test 1
+5. Sentence prioritizing for chunk size test 2
+6. Missing field (json input does not include "text" field)
+7. Invalid chunk_size (<= 0)
+8. Test Invalid input (not JSON)
+9. Text value is empty
+10. Large input Text
 
 To run the pytest suite use the command:
 
 ```bash
 docker run ajfroster/text_transformation_service:latest pytest -v
 ```
-
-# Endpoints
-
-/chunk (POST)
-
-splits text into chunks of a given size while preserving sentence boundaries.
-
-**Request Body:**
-{
-"text": "Your input text here.",
-"chunk_size": 50
-}
-
-**Response:**
-{
-"chunks":["Chunk1", "Chunk2"..., "ChunkN"]
-}
-
-**Example Curl**
-curl -X POST http://127.0.0.1:5000/chunk \
--H "Content-Type: application/json" \
--d '{
-"text": "Words in a line make a bigger line. Wow it finally snowed.",
-"chunk_size": 50
-}'
-
-**Expected Response**
-{
-"chunks":[
-"This is just a bunch of words in a line that make a bigger line.",
-"Wow it finally snowed I didn't know if it would ever snow again."
-]
-}
