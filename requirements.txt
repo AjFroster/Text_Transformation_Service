@@ -1,6 +1,11 @@
+# NLP Dependencies
 nltk==3.9.1
 spacy==3.8.2
-pytest==8.3.4
+
+# API Dependencies
 flask==2.3.2
-requests==2.31.0
 gunicorn==23.0.0
+
+# Unit Test dependencies
+pytest==8.3.4
+werkzeug<3.0
