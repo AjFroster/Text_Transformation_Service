@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # Preload the SpaCy model on app startup
 nlp = spacy.load("en_core_web_md")
-print(f"Loaded SpaCy model: {nlp.meta['name']}")
-print(f"Vectors loaded: {len(nlp.vocab.vectors)}")
+# print(f"Loaded SpaCy model: {nlp.meta['name']}")
+# print(f"Vectors loaded: {len(nlp.vocab.vectors)}")
 
 
 # Defines Routes and handles input/output

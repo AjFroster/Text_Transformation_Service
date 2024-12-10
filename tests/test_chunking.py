@@ -70,7 +70,7 @@ def test_semantic_similarity_grouping(client):
             "chunk_size": 80
         }
     )
-    print(response.get_json())
+    # print(response.get_json())
     assert response.status_code == 200
     assert response.get_json() == {
         "chunks": [
@@ -105,7 +105,7 @@ def test_semantics_with_topics(client):
         }
 
     )
-    print(response.get_json())
+    # print(response.get_json())
     assert response.status_code == 200
     assert response.get_json() == {
         "chunks": [
